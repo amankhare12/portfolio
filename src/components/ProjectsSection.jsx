@@ -24,7 +24,7 @@ const projects = [
         id: 3,
         title: "Twitter Landing Page",
         Description: "A modern Twitter-inspired clone with an engaging UI and responsive design, replicating core social media layout and interactions.",
-        image: "/projects/project3.jpg",
+        image: "/projects/project3.png",
         tags: ["HTML", "TailwindCSS"],
         demoUrl: "#",
         GithubUrl: "#",
