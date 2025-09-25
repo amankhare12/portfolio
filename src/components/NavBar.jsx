@@ -29,11 +29,14 @@ const NavBar = () => {
     )}>
       <div className="container flex items-center justify-between">
         <a
-          className="text-xl font-bold text-primary flex items-center"
+          className="text-xl font-bold text-primary flex items-center gap-3"
           href="#hero"
         >
           <span className="relative z-10">
-            <span className="text-glow text-foreground">Magical</span>Code
+            <img className="w-9 h-9" src="/logo/Logo4.png" alt="" srcset="" />
+          </span>
+          <span className="relative z-10">
+            <span className="text-glow text-foreground">Aman</span>Khare
           </span>
         </a>
 
