@@ -16,7 +16,7 @@ const NavBar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.screenY > 10)
+      setIsScrolled(window.scrollY > 10)
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -33,7 +33,7 @@ const NavBar = () => {
           href="#hero"
         >
           <span className="relative z-10">
-            <span className="text-glow text-foreground">Tech</span> Porfolio
+            <span className="text-glow text-foreground">Magical</span>Code
           </span>
         </a>
 
@@ -50,13 +50,13 @@ const NavBar = () => {
             </a>
           ))}
           
-          <div className="flex items-center justify-center hover:bg-primary/50 p-1 rounded-full transition-all duration-300">
+          <div className="flex items-center justify-center hover:bg-primary/50 p-1 rounded-full transition-all duration-300 cursor-pointer">
             <ThemeToggle />
           </div>
         </div>
         {/*mobile nav */}
 
-        <div className="flex md:hidden gap-6">
+        <div className="flex md:hidden gap-2">
           <div className="flex md:hidden hover:bg-primary/50 px-2 rounded-full transition-all duration-300">
             <ThemeToggle />
           </div>
