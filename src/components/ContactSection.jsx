@@ -82,7 +82,7 @@ const ContactSection = () => {
 
                         <form className="space-y-6">
                             <div>
-                                <label htmlFor="name" className="flex block text-sm font-medium mb-2"> Your Name</label>
+                                <label htmlFor="name" className="flex text-sm font-medium mb-2"> Your Name</label>
                                 <input
                                     type="text"
                                     id="name"
@@ -94,7 +94,7 @@ const ContactSection = () => {
                             </div>
 
                             <div>
-                                <label htmlFor="email" className="flex block text-sm font-medium mb-2"> Your Email</label>
+                                <label htmlFor="email" className="flex text-sm font-medium mb-2"> Your Email</label>
                                 <input
                                     type="email"
                                     id="email"
@@ -106,7 +106,7 @@ const ContactSection = () => {
                             </div>
 
                             <div>
-                                <label htmlFor="message" className="flex block text-sm font-medium mb-2"> Your Message</label>
+                                <label htmlFor="message" className="flex text-sm font-medium mb-2"> Your Message</label>
                                 <textarea
                                     id="message"
                                     name="message"
