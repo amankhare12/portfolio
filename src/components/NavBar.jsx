@@ -33,7 +33,7 @@ const NavBar = () => {
           href="#hero"
         >
           <span className="relative z-10">
-            <img className="w-9 h-9" src="/logo/Logo4.png" alt="" srcset="" />
+            <img className="w-9 h-9 rounded-sm" src="/logo/Logo6.png" alt="" srcset="" />
           </span>
           <span className="relative z-10">
             <span className="text-glow text-foreground">Aman</span>Khare
