@@ -4,7 +4,7 @@ import Spline from '@splinetool/react-spline'
 const HeroSection = () => {
     return (
         <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center px-4">
-            <div className="container max-w-6xl mx-auto lg:grid grid-cols-1 md:grid-cols-2 lg:gap-12 text-center">
+            <div className="container max-w-7xl mx-auto lg:grid grid-cols-1 md:grid-cols-2 lg:gap-12 text-center">
                 <div className=" flex flex-col justify-center space-y-6 text-center lg:text-left z-10">
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                         <span className="opacity-0 animate-fade-in"> Hi, I'm</span>
