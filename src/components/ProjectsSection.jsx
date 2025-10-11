@@ -1,15 +1,16 @@
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import AnimatedFlowchart from "./animated_flowchart/AnimatedFlowchart";
 
 
 const projects = [
     {
         id: 1,
-        title: "Netflix Landing Page",
-        Description: "A responsive Netflix landing page built with pure HTML and CSS, focusing on layout, design, and mobile-friendly structure.",
+        title: "Netflix Clone",
+        Description: "A responsive Netflix Clone built with React.JS and CSS, focusing on layout, design, and mobile-friendly structure.",
         image: "/projects/Netflix.png",
-        tags: ["HTML", "CSS"],
-        demoUrl: "#",
-        GithubUrl: "#",
+        tags: ["React", "CSS", "Firebase", "TMDB"],
+        demoUrl: "https://playnix.netlify.app/",
+        GithubUrl: "https://github.com/amankhare12/Netflix-Clone",
     },
     {
         id: 2,
@@ -28,13 +29,22 @@ const projects = [
         tags: ["HTML", "TailwindCSS"],
         demoUrl: "#",
         GithubUrl: "#",
+    },
+    {
+        id: 4,
+        title: "Password Manager App",
+        Description: "A simple and secure password manager where you can save your website credentials (website, username, and password), edit them, and delete them anytime.",
+        image: "/projects/project4.png",
+        tags: ["React", "TailwindCSS"],
+        demoUrl: "https://getpassop.netlify.app/",
+        GithubUrl: "https://github.com/amankhare12/Password-Manager",
     }
 ];
 
 const ProjectsSection = () => {
     return (
         <section id="projects" className="py-24 px-4 relative">
-            <div className="container mx-auto max-w-5xl">
+            <div className="container mx-auto max-w-7xl">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
                     Featured <span className="text-primary">Projects</span>
                 </h2>
@@ -54,7 +64,7 @@ const ProjectsSection = () => {
                                 <img
                                     src={project.image}
                                     alt={project.title}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-100"
                                 />
                             </div>
 
@@ -73,16 +83,16 @@ const ProjectsSection = () => {
                                         <a
                                             href={project.demoUrl}
                                             target="_blank"
-                                            className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                                            className="flex items-center justify-center gap-1.5 text-foreground/80 hover:text-primary transition-colors duration-300"
                                         >
-                                            <ExternalLink size={20} />
+                                            <ExternalLink size={20} /> <span>Demo</span>
                                         </a>
                                         <a
                                             href={project.GithubUrl}
                                             target="_blank"
-                                            className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                                            className="flex items-center justify-center gap-1.5 text-foreground/80 hover:text-primary transition-colors duration-300"
                                         >
-                                            <Github size={20} />
+                                            <Github size={20} /> <span>Code</span>
                                         </a>
                                     </div>
                                 </div>
@@ -100,6 +110,10 @@ const ProjectsSection = () => {
                         Check My Github <ArrowRight size={16} />
                     </a>
                 </div>
+
+                {/* <div className="text-center mt-12">
+                    <AnimatedFlowchart />
+                </div> */}
             </div>
         </section>
     )

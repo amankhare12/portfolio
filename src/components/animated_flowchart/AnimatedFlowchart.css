@@ -1,0 +1,54 @@
+.flowcontainer {
+    /* border: 1px solid #f00; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+    /* border: 1px solid #f00; */
+    width: 100%;
+    max-width: 1200px;
+    padding: 30px;
+}
+
+.svg {
+    /* border: 1px solid #00f; */
+    width: 100%;
+    max-width: 1200px;
+    min-width: 300px;
+    height: 100%;
+}
+
+.glow_primary {
+    stroke: #3183FF !important;
+    stroke-width: 5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 10px #3183FF)
+        drop-shadow(0 0 20px #3183FF)
+        drop-shadow(0 0 30px #3183FF) !important;
+    visibility: visible;
+}
+
+.glow_secondary {
+    stroke: #182233 !important;
+    stroke-width: 5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 10px #0751bf)
+        drop-shadow(0 0 20px #0751bf)
+        drop-shadow(0 0 30px #0751bf) !important;
+    visibility: visible;
+}
+
+.custom-text-center {
+    text-align: center;
+}
+.custom-vertical-text {
+    writing-mode: vertical-lr;
+    text-align: center;
+}
+.font-16{
+    font-size: 16px !important;
+}
