@@ -14,6 +14,24 @@ const projects = [
     },
     {
         id: 2,
+        title: "Password Manager App",
+        Description: "A simple and secure password manager where you can save your website credentials (website, username, and password), edit them, and delete them anytime.",
+        image: "/projects/project4.png",
+        tags: ["React", "TailwindCSS"],
+        demoUrl: "https://getpassop.netlify.app/",
+        GithubUrl: "https://github.com/amankhare12/Password-Manager",
+    },
+    {
+        id: 3,
+        title: "Cryptoplace",
+        Description: "A clean and responsive crypto tracker that helps users stay updated with live prices and global market stats.",
+        image: "/projects/project5.png",
+        tags: ["React", "CSS", "Coingecko API"],
+        demoUrl: "https://thecryptoplace.netlify.app/",
+        GithubUrl: "https://github.com/amankhare12/Cryptoplace",
+    },
+    {
+        id: 4,
         title: "Spotify Landing Page",
         Description: "A responsive Spotify-inspired music player clone featuring an interactive UI, modern design, and smooth user experience.",
         image: "/projects/project2.jpg",
@@ -22,7 +40,7 @@ const projects = [
         GithubUrl: "#",
     },
     {
-        id: 3,
+        id: 5,
         title: "Twitter Landing Page",
         Description: "A modern Twitter-inspired clone with an engaging UI and responsive design, replicating core social media layout and interactions.",
         image: "/projects/project3.png",
@@ -30,15 +48,6 @@ const projects = [
         demoUrl: "#",
         GithubUrl: "#",
     },
-    {
-        id: 4,
-        title: "Password Manager App",
-        Description: "A simple and secure password manager where you can save your website credentials (website, username, and password), edit them, and delete them anytime.",
-        image: "/projects/project4.png",
-        tags: ["React", "TailwindCSS"],
-        demoUrl: "https://getpassop.netlify.app/",
-        GithubUrl: "https://github.com/amankhare12/Password-Manager",
-    }
 ];
 
 const ProjectsSection = () => {
