@@ -1,11 +1,23 @@
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, SendIcon, Twitter } from "lucide-react"
-import cn from "@/lib/utils";
+import { Form, Input, Button } from "antd";
 
 const ContactSection = () => {
+    const [form] = Form.useForm();
+
+    const onFinish = (values) => {
+        console.log('Form values:', values);
+        // Handle form submission here
+        // You can add your API call or email service integration
+        form.resetFields();
+    };
+
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
     return (
         <section
             id="contact"
-            className="py-24 px-4 relative bg-secondary/30"
+            className="py-24 px-4 relative bg-secondary/30 contact-section"
         >
             <div className="container mx-auto max-w-6xl">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
@@ -29,7 +41,7 @@ const ContactSection = () => {
                                     <Mail className="h-6 w-6 text-primary" />
                                 </div>
                                 <div>
-                                    <h4 className="font-medium"> Email</h4>
+                                    <h4 className="font-medium text-left"> Email</h4>
                                     <a href="m" className="text-muted-foreground hover:text-primary transition-colors">
                                         hello@gmail.com
                                     </a>
@@ -40,9 +52,9 @@ const ContactSection = () => {
                                     <Phone className="h-6 w-6 text-primary" />
                                 </div>
                                 <div>
-                                    <h4 className="font-medium"> Phone</h4>
+                                    <h4 className="font-medium text-left"> Phone</h4>
                                     <a href="tel: +914444444444" className="text-muted-foreground hover:text-primary transition-colors">
-                                        +91 4444444444
+                                        +91 XXXXXXXX59
                                     </a>
                                 </div>
                             </div>
@@ -51,9 +63,9 @@ const ContactSection = () => {
                                     <MapPin className="h-6 w-6 text-primary" />
                                 </div>
                                 <div>
-                                    <h4 className="font-medium"> Location</h4>
+                                    <h4 className="font-medium text-left"> Location</h4>
                                     <a className="text-muted-foreground hover:text-primary transition-colors">
-                                        Abc, XYZ, India
+                                        Mumbai, Maharashtra, India
                                     </a>
                                 </div>
                             </div>
@@ -80,50 +92,80 @@ const ContactSection = () => {
                     <div className="bg-card p-8 rounded-lg shadow-xs">
                         <h3 className="text-2xl font-semibold mb-6"> Send Me Message</h3>
 
-                        <form className="space-y-6">
-                            <div>
-                                <label htmlFor="name" className="flex text-sm font-medium mb-2"> Your Name</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    required
-                                    className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                                    placeholder="Rohan Kumar...."
-                                />
-                            </div>
-
-                            <div>
-                                <label htmlFor="email" className="flex text-sm font-medium mb-2"> Your Email</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    required
-                                    className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                                    placeholder="John@gmail.com"
-                                />
-                            </div>
-
-                            <div>
-                                <label htmlFor="message" className="flex text-sm font-medium mb-2"> Your Message</label>
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    required
-                                    className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none"
-                                    placeholder="Hello, I'd like to talk about..."
-                                />
-                            </div>
-
-                            <button type="submit" className={cn("primary-button w-full flex items-center justify-center gap-2",
-
-                            )}
+                        <Form
+                            form={form}
+                            name="contact-form"
+                            onFinish={onFinish}
+                            onFinishFailed={onFinishFailed}
+                            layout="vertical"
+                            className="space-y-6"
+                        >
+                            <Form.Item
+                                label="Your Name"
+                                name="name"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please enter your name!',
+                                    },
+                                ]}
                             >
-                                Send Message
-                                <SendIcon size={16} />
-                            </button>
-                        </form>
+                                <Input 
+                                    placeholder="Rohan Kumar...."
+                                    size="large"
+                                />
+                            </Form.Item>
+
+                            <Form.Item
+                                label="Your Email"
+                                name="email"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please enter your email!',
+                                    },
+                                    {
+                                        type: 'email',
+                                        message: 'Please enter a valid email!',
+                                    },
+                                ]}
+                            >
+                                <Input 
+                                    type="email"
+                                    placeholder="John@gmail.com"
+                                    size="large"
+                                />
+                            </Form.Item>
+
+                            <Form.Item
+                                label="Your Message"
+                                name="message"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please enter your message!',
+                                    },
+                                ]}
+                            >
+                                <Input.TextArea 
+                                    placeholder="Hello, I'd like to talk about..."
+                                    rows={4}
+                                    size="large"
+                                />
+                            </Form.Item>
+
+                            <Form.Item>
+                                <Button 
+                                    // type="primary" 
+                                    htmlType="submit" 
+                                    size="large"
+                                    className="w-full flex items-center justify-center gap-2 primary-button"
+                                    icon={<SendIcon size={16} />}
+                                >
+                                    Send Message
+                                </Button>
+                            </Form.Item>
+                        </Form>
                     </div>
                 </div>
             </div>

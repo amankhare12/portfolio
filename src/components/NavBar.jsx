@@ -53,16 +53,16 @@ const NavBar = () => {
             </a>
           ))}
           
-          <div className="flex items-center justify-center hover:bg-primary/50 p-1 rounded-full transition-all duration-300 cursor-pointer">
+          {/* <div className="flex items-center justify-center hover:bg-primary/50 p-1 rounded-full transition-all duration-300 cursor-pointer">
             <ThemeToggle />
-          </div>
+          </div> */}
         </div>
         {/*mobile nav */}
 
         <div className="flex md:hidden gap-2">
-          <div className="flex md:hidden hover:bg-primary/50 px-2 rounded-full transition-all duration-300">
+          {/* <div className="flex md:hidden hover:bg-primary/50 px-2 rounded-full transition-all duration-300">
             <ThemeToggle />
-          </div>
+          </div> */}
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}

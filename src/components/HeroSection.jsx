@@ -4,8 +4,8 @@ import Spline from '@splinetool/react-spline'
 const HeroSection = () => {
     return (
         <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center px-4">
-            <div className="container max-w-7xl mx-auto lg:grid grid-cols-1 md:grid-cols-2 lg:gap-12 text-center">
-                <div className=" flex flex-col justify-center space-y-6 text-center lg:text-left z-10">
+            <div className="container max-w-7xl mx-auto text-center">
+                <div className=" flex flex-col justify-center space-y-6 text-center z-10">
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
                         <span className="opacity-0 animate-fade-in"> Hi, I'm</span>
                         <span className="text-primary opacity-0 animate-fade-in-delay-1"> Aman</span>
@@ -24,11 +24,11 @@ const HeroSection = () => {
                     </div>
                 </div>
 
-                <div className="hidden lg:flex justify-end">
+                {/* <div className="hidden lg:flex justify-end">
                     <div>
                     <Spline scene="https://prod.spline.design/PcvPHuZArdDjI10L/scene.splinecode" />
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <div className="absolute bottom-8 left-1/2 transform-translate-x-1/2 flex flex-col items-center animate-bounce">
