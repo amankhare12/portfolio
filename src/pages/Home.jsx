@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import ThemeToggle from "../components/ThemeToggle";
 import StarBackground from '../components/StarBackground';
 import NavBar from '../components/NavBar';
@@ -9,7 +10,18 @@ import ProjectsSection from '../components/ProjectsSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import LightRays from "../components/backgroundAnimation/LightRays";
+import FadeInSection from '../components/FadeInSection';
+
 const Home = () => {
+  const location = useLocation();
+
+  // Scroll to top when navigating to home page (unless there's a hash)
+  useEffect(() => {
+    if (!location.hash) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [location.pathname, location.hash]);
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Theme toggle */}
@@ -37,11 +49,21 @@ const Home = () => {
 
       {/* Main Content */}
       <main>
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <ContactSection />
+        <FadeInSection>
+          <HeroSection />
+        </FadeInSection>
+        <FadeInSection delay={100}>
+          <AboutSection />
+        </FadeInSection>
+        <FadeInSection delay={200}>
+          <SkillsSection />
+        </FadeInSection>
+        <FadeInSection delay={300}>
+          <ProjectsSection />
+        </FadeInSection>
+        <FadeInSection delay={400}>
+          <ContactSection />
+        </FadeInSection>
       </main>
 
       {/* Footer */}

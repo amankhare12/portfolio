@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { useEffect, useState } from "react"
 import Home from "./pages/Home"
+import GitWorkflow from "./pages/GitWorkflow"
 import NotFound from "./pages/NotFound"
 import "./App.css"
 function App() {
@@ -84,6 +85,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route index element={<Home />} />
+            <Route path="/git-workflow" element={<GitWorkflow />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
