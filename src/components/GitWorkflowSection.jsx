@@ -146,7 +146,7 @@ const GitWorkflowSection = () => {
               <div className="relative gradient-border p-8 md:p-10 bg-gradient-to-br from-orange-500/20 via-orange-600/15 to-orange-700/10 git-card-glow backdrop-blur-sm border-2 border-orange-500/30 overflow-hidden group h-full rounded-xl">
                 <div className="relative z-10">
                   {/* Icon */}
-                  <div className="flex items-start gap-4 mb-6">
+                  <div className="flex flex-col md:flex-row items-center md:items-start gap-4 mb-6">
                     <div className="flex-shrink-0">
                       <div className="w-20 h-20 rounded-xl bg-orange-500/20 border-2 border-orange-400/40 flex items-center justify-center">
                         <Cloud className="w-10 h-10 text-orange-400" strokeWidth={2} />
@@ -164,7 +164,7 @@ const GitWorkflowSection = () => {
                   </div>
                   
                   {/* Service badges */}
-                  <div className="flex gap-3 flex-wrap mt-6">
+                  <div className="flex justify-center md:justify-start gap-3 flex-wrap mt-6">
                     <span className="px-4 py-2 rounded-lg bg-card/90 border border-orange-500/30 text-sm font-medium text-foreground/90 backdrop-blur-sm">GitHub</span>
                     <span className="px-4 py-2 rounded-lg bg-card/90 border border-orange-500/30 text-sm font-medium text-foreground/90 backdrop-blur-sm">GitLab</span>
                     <span className="px-4 py-2 rounded-lg bg-card/90 border border-orange-500/30 text-sm font-medium text-foreground/90 backdrop-blur-sm">Bitbucket</span>
@@ -178,7 +178,7 @@ const GitWorkflowSection = () => {
               <div className="relative gradient-border p-8 md:p-10 bg-gradient-to-br from-green-500/20 via-green-600/15 to-green-700/10 git-card-glow backdrop-blur-sm border-2 border-green-500/30 overflow-hidden group h-full rounded-xl">
                 <div className="relative z-10">
                   {/* Icon */}
-                  <div className="flex items-start gap-4 mb-6">
+                  <div className="flex flex-col md:flex-row items-center md:items-start gap-4 mb-6">
                     <div className="flex-shrink-0">
                       <div className="w-20 h-20 rounded-xl bg-green-500/20 border-2 border-green-400/40 flex items-center justify-center">
                         <HardDrive className="w-10 h-10 text-green-400" strokeWidth={2} />
