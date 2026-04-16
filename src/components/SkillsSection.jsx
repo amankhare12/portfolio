@@ -1,5 +1,6 @@
 import { useState } from "react";
 import cn from "@/lib/utils";
+import { useLanguage } from "../context/languageContext";
 
 const skills = [
     // Frontend
@@ -28,6 +29,14 @@ const categories = ["all", "frontend", "backend", "tools"];
 const SkillsSection = () => {
 
     const [activeCategory, setActiveCategory] = useState("all");
+    const { language } = useLanguage();
+
+    const categoryLabels = {
+      all: language === "en" ? "all" : "सभी",
+      frontend: language === "en" ? "frontend" : "फ्रंटेंड",
+      backend: language === "en" ? "backend" : "बैकेंड",
+      tools: language === "en" ? "tools" : "टूल्स",
+    };
 
     const filteredSkills = skills.filter(
         (skill) => activeCategory === "all" || skill.category === activeCategory
@@ -39,7 +48,7 @@ const SkillsSection = () => {
     >
       <div className="container mx-auto max-w-7xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-            My <span className="text-primary">Skills</span>
+            {language === "en" ? "My" : "मेरी"} <span className="text-primary">{language === "en" ? "Skills" : "स्किल्स"}</span>
         </h2>
 
         <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -52,7 +61,7 @@ const SkillsSection = () => {
                     ? "bg-primary text-primary-foreground" 
                     : "bg-secondary/70 text-foreground hover:bg-secondary"
                   )}>
-                    {category}
+                    {categoryLabels[category]}
                 </button>
             ))}
         </div>

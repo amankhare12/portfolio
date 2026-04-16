@@ -1,18 +1,25 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import cn from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import { useLanguage } from "../context/languageContext";
 
-const navItem = [
-  { name: "Home", href: "#hero" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contact" },
-]
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { language, setLanguage } = useLanguage();
+
+  const navItem = [
+    { name: language === "en" ? "Home" : "होम", href: "/", isHash: false },
+    { name: language === "en" ? "About" : "परिचय", href: "#about", isHash: true },
+    { name: language === "en" ? "Skills" : "स्किल्स", href: "#skills", isHash: true },
+    { name: language === "en" ? "Projects" : "प्रोजेक्ट्स", href: "#projects", isHash: true },
+    { name: language === "en" ? "Git Workflow" : "गिट वर्कफ्लो", href: "/git-workflow", isHash: false },
+    { name: language === "en" ? "Contact" : "संपर्क", href: "#contact", isHash: true },
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,14 +30,68 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Handle hash navigation when route changes
+  useEffect(() => {
+    if (location.pathname === '/' && location.hash) {
+      // Small delay to ensure DOM is ready
+      setTimeout(() => {
+        const element = document.querySelector(location.hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [location])
+
+  const handleHashClick = (e, hash) => {
+    e.preventDefault();
+    
+    if (location.pathname === '/') {
+      // Already on home page, just scroll
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Navigate to home page first
+      navigate('/');
+      // Then scroll to the section after navigation completes
+      // Use multiple attempts to ensure element is available (max 10 retries)
+      let attempts = 0;
+      const maxAttempts = 10;
+      const scrollToSection = () => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        } else if (attempts < maxAttempts) {
+          attempts++;
+          setTimeout(scrollToSection, 50);
+        }
+      };
+      setTimeout(scrollToSection, 150);
+    }
+    setIsMenuOpen(false);
+  }
+
+  const handleHomeClick = (e) => {
+    if (location.pathname === '/') {
+      // Already on home page, scroll to top
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // If on different page, Link will handle navigation
+    setIsMenuOpen(false);
+  }
+
   return (
     <nav className={cn("fixed w-full z-40 transition-all duration-300",
       isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
     )}>
       <div className="container flex items-center justify-between">
-        <a
+        <Link
+          to="/"
+          onClick={handleHomeClick}
           className="text-xl font-bold text-primary flex items-center gap-3"
-          href="#hero"
         >
           <span className="relative z-10">
             <img className="w-9 h-9 rounded-sm" src="/logo/Logo6.png" alt="" srcset="" />
@@ -38,31 +99,60 @@ const NavBar = () => {
           <span className="relative z-10">
             <span className="text-glow text-foreground">Aman</span>Khare
           </span>
-        </a>
+        </Link>
 
         {/*desktop nav */}
 
         <div className="hidden md:flex space-x-8 items-center">
           {navItem.map((item, key) => (
-            <a
-              key={key}
-              href={item.href}
-              className="text-foreground/80 hover:text-primary transition-colors duration-200"
-            >
-              {item.name}
-            </a>
+            item.isHash ? (
+              <a
+                key={key}
+                href={item.href}
+                onClick={(e) => handleHashClick(e, item.href)}
+                className="text-foreground/80 hover:text-primary transition-colors duration-200 cursor-pointer"
+              >
+                {item.name}
+              </a>
+            ) : item.href === '/' ? (
+              <Link
+                key={key}
+                to={item.href}
+                onClick={handleHomeClick}
+                className="text-foreground/80 hover:text-primary transition-colors duration-200"
+              >
+                {item.name}
+              </Link>
+            ) : (
+              <Link
+                key={key}
+                to={item.href}
+                className="text-foreground/80 hover:text-primary transition-colors duration-200"
+              >
+                {item.name}
+              </Link>
+            )
           ))}
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+            className="bg-secondary/70 text-foreground px-3 py-1 rounded-full border border-border outline-none"
+            aria-label="Language selector"
+          >
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+          </select>
           
-          <div className="flex items-center justify-center hover:bg-primary/50 p-1 rounded-full transition-all duration-300 cursor-pointer">
+          {/* <div className="flex items-center justify-center hover:bg-primary/50 p-1 rounded-full transition-all duration-300 cursor-pointer">
             <ThemeToggle />
-          </div>
+          </div> */}
         </div>
         {/*mobile nav */}
 
         <div className="flex md:hidden gap-2">
-          <div className="flex md:hidden hover:bg-primary/50 px-2 rounded-full transition-all duration-300">
+          {/* <div className="flex md:hidden hover:bg-primary/50 px-2 rounded-full transition-all duration-300">
             <ThemeToggle />
-          </div>
+          </div> */}
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -79,15 +169,49 @@ const NavBar = () => {
           isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}>
           <div className="flex flex-col space-y-8 text-xl">
-            {navItem.map((item, key) => (
-              <a
-                key={key}
-                href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors duration-200"
-                onClick={() => setIsMenuOpen(false)}
+            <div className="flex justify-center">
+              <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+                className="bg-secondary/70 text-foreground px-3 py-1 rounded-full border border-border outline-none text-base"
+                aria-label="Language selector"
               >
-                {item.name}
-              </a>
+                <option value="en">English</option>
+                <option value="hi">हिंदी</option>
+              </select>
+            </div>
+            {navItem.map((item, key) => (
+              item.isHash ? (
+                <a
+                  key={key}
+                  href={item.href}
+                  onClick={(e) => handleHashClick(e, item.href)}
+                  className="text-foreground/80 hover:text-primary transition-colors duration-200 cursor-pointer"
+                >
+                  {item.name}
+                </a>
+              ) : item.href === '/' ? (
+                <Link
+                  key={key}
+                  to={item.href}
+                  onClick={(e) => {
+                    handleHomeClick(e);
+                    setIsMenuOpen(false);
+                  }}
+                  className="text-foreground/80 hover:text-primary transition-colors duration-200"
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <Link
+                  key={key}
+                  to={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-foreground/80 hover:text-primary transition-colors duration-200"
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
           </div>
         </div>

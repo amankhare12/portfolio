@@ -1,0 +1,563 @@
+/* App-level styles */
+
+.app-root {
+  min-height: 100vh;
+}
+
+.app-loader-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #000000;
+  color: #ffffff;
+  z-index: 9999;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.6s ease-out;
+}
+
+.app-loader-overlay.app-loader-fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.app-loader-glow-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.app-loader-glow-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(139, 92, 246, 0) 70%);
+  filter: blur(60px);
+  animation: app-glow-pulse 4s ease-in-out infinite;
+}
+
+.app-loader-glow-left {
+  width: 400px;
+  height: 400px;
+  top: 50%;
+  left: -10%;
+  transform: translateY(-50%);
+  animation-delay: 0s;
+}
+
+.app-loader-glow-right {
+  width: 400px;
+  height: 400px;
+  top: 50%;
+  right: -10%;
+  transform: translateY(-50%);
+  animation-delay: 2s;
+}
+
+@keyframes app-glow-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-50%) scale(1.15);
+  }
+}
+
+.app-loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+  animation: app-fade-in 0.5s ease-in;
+}
+
+@keyframes app-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-loader-brand {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0.02em;
+  z-index: 2;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.app-loader-text {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-weight: 300;
+  z-index: 2;
+  letter-spacing: 0.05em;
+}
+
+.app-loader-progress-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 280px;
+  /* margin-top: 0.5rem; */
+  z-index: 2;
+}
+
+.app-loader-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.app-loader-progress-fill {
+  height: 100%;
+  background: #8b5cf6;
+  border-radius: 2px;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+.app-loader-percentage {
+  font-size: 0.9rem;
+  color: #ffffff;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.contact-section {
+
+    .ant-form-item label {
+        color: var(--color-foreground);
+    }
+    .ant-form .ant-btn {
+        background-color: var(--color-primary);
+        color: var(--color-primary-foreground);
+        border: none;
+    }
+    .ant-form .ant-btn:hover {
+        background-color: var(--color-primary);
+        color: var(--color-primary-foreground);
+        border: none;
+        transform: scale(1.01);
+    }
+}
+
+/* Fade-in section animation */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-section.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Git Workflow Animations */
+.git-workflow-center-icon {
+    position: relative;
+}
+
+.git-icon-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(139, 92, 246, 0.2) 40%, transparent 70%);
+    opacity: 0;
+    animation: git-glow-pulse 3s ease-in-out infinite;
+    filter: blur(20px);
+}
+
+.git-icon-visible .git-icon-glow {
+    opacity: 1;
+}
+
+.git-orbital-ring {
+    animation: git-orbital-rotate 8s linear infinite;
+    width: 180px;
+    height: 180px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes git-orbital-rotate {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.git-icon-pulse {
+    animation: git-icon-pulse 2s ease-in-out infinite;
+}
+
+.git-icon-rotate {
+    animation: git-icon-rotate 4s linear infinite;
+}
+
+.git-icon-visible .git-icon-pulse {
+    animation: git-icon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes git-glow-pulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.6;
+    }
+}
+
+@keyframes git-icon-pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+    }
+}
+
+@keyframes git-icon-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Git Area Cards */
+.git-area-card {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.git-card-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.git-card-glow {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.git-card-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(59, 130, 246, 0.3), rgba(34, 197, 94, 0.3));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.git-card-glow:hover::before {
+    opacity: 1;
+}
+
+.git-card-glow:hover {
+    box-shadow: 0 10px 40px rgba(139, 92, 246, 0.2), 0 0 20px rgba(139, 92, 246, 0.1);
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+.git-icon-bounce {
+    animation: git-icon-bounce 2s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+@keyframes git-icon-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.git-tag-animate {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: git-tag-pop 0.5s ease-out forwards;
+}
+
+@keyframes git-tag-pop {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.git-code-pulse {
+    animation: git-code-pulse 2s ease-in-out infinite;
+}
+
+@keyframes git-code-pulse {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+.git-dot-pulse {
+    animation: git-dot-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes git-dot-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.7;
+    }
+}
+
+/* Git Connection Lines */
+.git-connection-line {
+    opacity: 0;
+    animation: git-line-fade-in 0.5s ease-out forwards;
+}
+
+@keyframes git-line-fade-in {
+    to {
+        opacity: 1;
+    }
+}
+
+.git-path-animate {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: git-path-draw 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 3px currentColor);
+}
+
+@keyframes git-path-draw {
+    0% {
+        stroke-dashoffset: 1000;
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.5;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+/* Animated particles on paths */
+.git-particle-blue {
+    animation: git-particle-move 2.5s linear infinite;
+    opacity: 0;
+    filter: drop-shadow(0 0 4px currentColor);
+}
+
+@keyframes git-particle-move {
+    0% {
+        offset-distance: 0%;
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        offset-distance: 100%;
+        opacity: 0;
+    }
+}
+
+/* Enhanced line visibility */
+.git-connection-line svg {
+    overflow: visible;
+}
+
+.git-connection-line path {
+    transition: opacity 0.3s ease;
+}
+
+.git-connection-line:hover path {
+    stroke-width: 5;
+    filter: brightness(1.2);
+}
+
+/* Git Command Cards */
+.git-command-card {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.git-command-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.git-command-card:hover {
+    transform: translateX(8px) translateY(-5px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.15), 0 0 20px rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+.git-command-icon {
+    transition: all 0.3s ease;
+}
+
+.git-command-card:hover .git-command-icon {
+    transform: scale(1.15) rotate(5deg);
+    background: rgba(139, 92, 246, 0.25);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.git-command-text {
+    transition: all 0.3s ease;
+}
+
+.git-command-card:hover .git-command-text {
+    color: hsl(var(--primary));
+    text-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+    transform: translateX(2px);
+}
+
+/* Git Explanation Box */
+.git-explanation-box {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.git-explanation-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.git-pull-equation {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: git-equation-pop 0.5s ease-out forwards;
+}
+
+@keyframes git-equation-pop {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Enhanced connection lines with animated particles */
+.git-path-animate {
+    filter: drop-shadow(0 0 3px currentColor);
+}
+
+.git-path-animate::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: git-particle-move 2s linear infinite;
+}
+
+@keyframes git-particle-move {
+    0% {
+        offset-distance: 0%;
+        opacity: 1;
+    }
+    100% {
+        offset-distance: 100%;
+        opacity: 0;
+    }
+}
+
+/* Enhanced tag animations */
+.git-tag-animate {
+    transition: all 0.3s ease;
+}
+
+.git-tag-animate:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.2);
+}
+
+/* Enhanced explanation box */
+.git-explanation-box {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+}
+
+.git-explanation-box:hover {
+    box-shadow: 0 20px 60px rgba(139, 92, 246, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Improved icon bounce */
+@keyframes git-icon-bounce {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-12px) scale(1.05);
+    }
+}
+
+/* Enhanced pulse effects */
+.git-code-pulse {
+    display: inline-block;
+}
+
+@keyframes git-code-pulse {
+    0%, 100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 8px currentColor);
+    }
+}
