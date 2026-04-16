@@ -1,8 +1,10 @@
 import { GitBranch, GitCommit, Upload, Download, Plus, RotateCcw, Merge, Folder, Package, HardDrive, Cloud, Sparkles } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { useLanguage } from '../context/languageContext'
 
 const GitWorkflowSection = () => {
   const [isVisible, setIsVisible] = useState(false)
+  const { language } = useLanguage()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -128,13 +130,15 @@ const GitWorkflowSection = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm text-primary font-medium">Git Workflow</span>
+            <span className="text-sm text-primary font-medium">{language === "en" ? "Git Workflow" : "गिट वर्कफ्लो"}</span>
           </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
-            How <span className="text-primary">Git</span> Works
+            {language === "en" ? "How " : "कैसे "}<span className="text-primary">Git</span> {language === "en" ? "Works" : "काम करता है"}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Master the fundamental workflow of Git version control system. Understand how changes flow between your workspace, staging area, local repository, and remote repository.
+            {language === "en"
+              ? "Master the fundamental workflow of Git version control system. Understand how changes flow between your workspace, staging area, local repository, and remote repository."
+              : "Git version control system के मूल workflow को समझें। जानें कि changes आपके workspace, staging area, local repository और remote repository के बीच कैसे flow करते हैं।"}
           </p>
         </div>
 
@@ -153,9 +157,9 @@ const GitWorkflowSection = () => {
                       </div>
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-3xl md:text-4xl font-bold mb-2 text-orange-400">Remote Repository</h3>
+                      <h3 className="text-3xl md:text-4xl font-bold mb-2 text-orange-400">{language === "en" ? "Remote Repository" : "रिमोट रिपॉजिटरी"}</h3>
                       <p className="text-base md:text-lg text-orange-300/80 leading-relaxed">
-                        Shared online repository
+                        {language === "en" ? "Shared online repository" : "साझा ऑनलाइन रिपॉजिटरी"}
                       </p>
                       <p className="text-sm md:text-base text-orange-200/60 mt-2">
                         (GitHub, GitLab, Bitbucket)
@@ -185,9 +189,9 @@ const GitWorkflowSection = () => {
                       </div>
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-3xl md:text-4xl font-bold mb-2 text-green-400">Local Repository</h3>
+                      <h3 className="text-3xl md:text-4xl font-bold mb-2 text-green-400">{language === "en" ? "Local Repository" : "लोकल रिपॉजिटरी"}</h3>
                       <p className="text-base md:text-lg text-green-300/80 leading-relaxed">
-                        Your local copy of the project's version history
+                        {language === "en" ? "Your local copy of the project's version history" : "प्रोजेक्ट के version history की आपकी local copy"}
                       </p>
                     </div>
                   </div>
@@ -199,7 +203,7 @@ const GitWorkflowSection = () => {
                       <div className="w-5 h-5 rounded-full bg-white/80 shadow-lg"></div>
                       <div className="w-5 h-5 rounded-full bg-blue-500 shadow-lg shadow-blue-500/50"></div>
                     </div>
-                    <span className="text-sm text-green-300/70">Version history</span>
+                    <span className="text-sm text-green-300/70">{language === "en" ? "Version history" : "वर्जन हिस्ट्री"}</span>
                   </div>
                 </div>
               </div>
@@ -347,7 +351,7 @@ const GitWorkflowSection = () => {
           {/* Git Commands Flow */}
           <div className="mt-16">
             <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
-              Git Commands
+              {language === "en" ? "Git Commands" : "गिट कमांड्स"}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {gitCommands.map((cmd, index) => {
@@ -393,10 +397,10 @@ const GitWorkflowSection = () => {
             <div className="text-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
                 <Merge className="w-4 h-4 text-primary" />
-                <span className="text-sm font-semibold text-primary">Quick Tip</span>
+                <span className="text-sm font-semibold text-primary">{language === "en" ? "Quick Tip" : "त्वरित टिप"}</span>
               </div>
               <h4 className="text-2xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent">
-                Understanding Git Pull
+                {language === "en" ? "Understanding Git Pull" : "Git Pull को समझें"}
               </h4>
               <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 mb-6">
                 <div className="flex items-center gap-3 px-6 py-3 rounded-xl bg-primary/10 border border-primary/20 git-pull-equation backdrop-blur-sm">
@@ -412,7 +416,9 @@ const GitWorkflowSection = () => {
                 </div>
               </div>
               <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                <code className="text-primary font-mono">git pull</code> is a convenient command that combines <code className="text-primary font-mono">git fetch</code> and <code className="text-primary font-mono">git merge</code>. It downloads changes from the remote repository and automatically merges them into your workspace.
+                {language === "en"
+                  ? <><code className="text-primary font-mono">git pull</code> is a convenient command that combines <code className="text-primary font-mono">git fetch</code> and <code className="text-primary font-mono">git merge</code>. It downloads changes from the remote repository and automatically merges them into your workspace.</>
+                  : <><code className="text-primary font-mono">git pull</code> एक उपयोगी command है जो <code className="text-primary font-mono">git fetch</code> और <code className="text-primary font-mono">git merge</code> को जोड़ता है। यह remote repository से changes डाउनलोड करता है और उन्हें आपके workspace में स्वतः merge करता है।</>}
               </p>
             </div>
           </div>

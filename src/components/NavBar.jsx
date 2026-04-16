@@ -3,20 +3,23 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import cn from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import { useLanguage } from "../context/languageContext";
 
-const navItem = [
-  { name: "Home", href: "/", isHash: false },
-  { name: "About", href: "#about", isHash: true },
-  { name: "Skills", href: "#skills", isHash: true },
-  { name: "Projects", href: "#projects", isHash: true },
-  { name: "Git Workflow", href: "/git-workflow", isHash: false },
-  { name: "Contact", href: "#contact", isHash: true },
-]
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { language, setLanguage } = useLanguage();
+
+  const navItem = [
+    { name: language === "en" ? "Home" : "होम", href: "/", isHash: false },
+    { name: language === "en" ? "About" : "परिचय", href: "#about", isHash: true },
+    { name: language === "en" ? "Skills" : "स्किल्स", href: "#skills", isHash: true },
+    { name: language === "en" ? "Projects" : "प्रोजेक्ट्स", href: "#projects", isHash: true },
+    { name: language === "en" ? "Git Workflow" : "गिट वर्कफ्लो", href: "/git-workflow", isHash: false },
+    { name: language === "en" ? "Contact" : "संपर्क", href: "#contact", isHash: true },
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -130,6 +133,15 @@ const NavBar = () => {
               </Link>
             )
           ))}
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+            className="bg-secondary/70 text-foreground px-3 py-1 rounded-full border border-border outline-none"
+            aria-label="Language selector"
+          >
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+          </select>
           
           {/* <div className="flex items-center justify-center hover:bg-primary/50 p-1 rounded-full transition-all duration-300 cursor-pointer">
             <ThemeToggle />
@@ -157,6 +169,17 @@ const NavBar = () => {
           isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}>
           <div className="flex flex-col space-y-8 text-xl">
+            <div className="flex justify-center">
+              <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+                className="bg-secondary/70 text-foreground px-3 py-1 rounded-full border border-border outline-none text-base"
+                aria-label="Language selector"
+              >
+                <option value="en">English</option>
+                <option value="hi">हिंदी</option>
+              </select>
+            </div>
             {navItem.map((item, key) => (
               item.isHash ? (
                 <a

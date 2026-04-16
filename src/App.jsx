@@ -3,12 +3,14 @@ import { useEffect, useState } from "react"
 import Home from "./pages/Home"
 import GitWorkflow from "./pages/GitWorkflow"
 import NotFound from "./pages/NotFound"
+import { LanguageProvider } from "./context/languageContext"
 import "./App.css"
 function App() {
 
   const [isLoading, setIsLoading] = useState(true)
   const [progress, setProgress] = useState(0)
   const [fadeOut, setFadeOut] = useState(false)
+  const [language, setLanguage] = useState(() => localStorage.getItem("language") || "en")
 
   useEffect(() => {
     const MIN_LOADING_TIME = 2000 // 2 second
@@ -55,7 +57,12 @@ function App() {
     }
   }, [])
 
+  useEffect(() => {
+    localStorage.setItem("language", language)
+  }, [language])
+
   return (
+    <LanguageProvider value={{ language, setLanguage }}>
     <div className="app-root">
       {isLoading && (
         <div className={`app-loader-overlay ${fadeOut ? 'app-loader-fade-out' : ''}`}>
@@ -67,7 +74,7 @@ function App() {
           <span className="relative z-10">
             <img className="w-9 h-9 rounded-sm" src="/logo/Logo6.png" alt="" srcset="" />
           </span>
-            <p className="app-loader-text">Loading Portfolio...</p>
+            <p className="app-loader-text">{language === "en" ? "Loading Portfolio..." : "पोर्टफोलियो लोड हो रहा है..."}</p>
             <div className="app-loader-progress-container">
               <div className="app-loader-progress-bar">
                 <div 
@@ -91,6 +98,7 @@ function App() {
         </BrowserRouter>
       )}
     </div>
+    </LanguageProvider>
   )
 }
 

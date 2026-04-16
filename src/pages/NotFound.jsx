@@ -1,9 +1,12 @@
 import React from 'react'
+import { useLanguage } from '../context/languageContext'
 
 const NotFound = () => {
+  const { language } = useLanguage()
+
   return (
     <div>
-      Not found
+      {language === "en" ? "Not found" : "पेज नहीं मिला"}
     </div>
   )
 }
